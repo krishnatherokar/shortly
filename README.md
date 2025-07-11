@@ -37,6 +37,7 @@ python -m venv env
 
 ```bash
 pip install -r requirements.txt
+cd urlproject
 ```
 
 ### 5. Apply Migrations
