@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>URL Shortener</title>
-</head>
-<body>
-    <form method="POST">
-      {% csrf_token %}
-      <input type="url" name="original_url" placeholder="Enter url" required/>
-      <button type="submit">Shorten</button>
-    </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shortly - URL Shortener</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-    {% if short_url %}
-      <a href="{{ short_url }}">{{ short_url }}</a>
-    {% endif %}
-  </div>
-</body>
+  <body
+    class="bg-white text-neutral-700 flex items-center justify-center min-h-screen dark:bg-black dark:text-neutral-300"
+  >
+    <div class="p-4 pb-40 rounded w-full max-w-md">
+      <h1 class="text-2xl font-bold mb-8 text-center">Shortly</h1>
+      {% if short_url %}
+      <div class="mb-4 bg-green-500/20 p-4 rounded text-center">
+        <p class="text-green-600">Short URL:</p>
+        <a href="{{ short_url }}" class="text-blue-600 focus:outline-none"
+          >{{ short_url }}</a
+        >
+      </div>
+      {% endif %}
+      <form method="POST" class="flex flex-col gap-4">
+        {% csrf_token %}
+        <input
+          type="url"
+          name="original_url"
+          placeholder="Enter long URL..."
+          required
+          class="p-2 focus:outline-none bg-neutral-100 rounded w-full dark:bg-neutral-900"
+        />
+        <button
+          type="submit"
+          class="bg-blue-500/20 text-blue-600 py-2 px-4 rounded"
+        >
+          Shorten
+        </button>
+      </form>
+    </div>
+  </body>
 </html>
